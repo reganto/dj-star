@@ -1,4 +1,6 @@
+# flake8: noqa
+
 from .base import *
 
 
-DEBUG = config("DEBUG", default=True, cast=bool)
+DEBUG = get_env("DEBUG", default=True, cast=bool)
