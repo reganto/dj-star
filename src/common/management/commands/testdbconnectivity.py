@@ -5,9 +5,9 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     help = "Test database connectivity."
-    
+
     def add_arguments(self, parser):
-        parser.add_argument("db", type=str, help="Particular database to connect.")
+        parser.add_argument("db", type=str, help="Database name (mysql/pg)")
 
     def handle(self, *args, **optoins):
         db = optoins["db"]
@@ -22,4 +22,6 @@ class Command(BaseCommand):
         except ConnectionRefusedError as e:
             raise ConnectionRefusedError(self.style.ERROR(e))
         else:
-            self.stdout.write(self.style.SUCCESS("Connection established successfully!"))
+            self.stdout.write(
+                self.style.SUCCESS("Connection established successfully!")
+            )
