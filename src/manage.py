@@ -3,10 +3,12 @@
 import os
 import sys
 
+from decouple import config as get_env
+
 
 def main():
     """Run administrative tasks."""
-    DJANGO_ENV = os.environ.get("DJANGO_ENV", "local")
+    DJANGO_ENV = get_env("DJANGO_ENV", default="local")
     SETTING_PATH = f"config.settings.{DJANGO_ENV}"
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", SETTING_PATH)
     try:
